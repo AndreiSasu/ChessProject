@@ -9,7 +9,7 @@ public interface PlacementStrategy {
      * @param chessBoard the ChessBoard instance
      * @param xCoordinate the x coordinate ( left /right )
      * @param yCoordinate the y coordinate ( up / down )
-     * @return where the placement is valid
+     * @return whether the placement is valid
      */
     boolean isValidPlacement(final ChessBoard chessBoard, final int xCoordinate, final int yCoordinate);
 }
