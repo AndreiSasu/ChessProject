@@ -6,14 +6,14 @@ import com.solarwindsmsp.chess.PieceColor;
 
 public class PawnMovementStrategy implements MovementStrategy {
 
-    private Pawn pawn;
+    private final Pawn pawn;
 
-    public PawnMovementStrategy(Pawn pawn) {
+    public PawnMovementStrategy(final Pawn pawn) {
         this.pawn = pawn;
     }
 
     @Override
-    public void move(MovementType movementType, int xCoordinate, int yCoordinate) {
+    public void move(final MovementType movementType, final int xCoordinate, final int yCoordinate) {
         if(isValidMovement(movementType, xCoordinate, yCoordinate)) {
             this.pawn.setYCoordinate(yCoordinate);
             this.pawn.setXCoordinate(xCoordinate);

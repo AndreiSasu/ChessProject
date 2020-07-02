@@ -15,7 +15,7 @@ public class Pawn implements Piece {
     protected final MovementStrategy movementStrategy;
     protected final PlacementStrategy placementStrategy;
 
-    public Pawn(PieceColor pieceColor) {
+    public Pawn(final PieceColor pieceColor) {
         this.pieceColor = pieceColor;
         this.movementStrategy = new PawnMovementStrategy(this);
         this.placementStrategy = new PawnPlacementStrategy(this);
@@ -33,7 +33,7 @@ public class Pawn implements Piece {
         return this.pieceColor;
     }
 
-    public void move(MovementType movementType, int newX, int newY) {
+    public void move(final MovementType movementType, final int newX, final int newY) {
         this.movementStrategy.move(movementType, newX, newY);
     }
 

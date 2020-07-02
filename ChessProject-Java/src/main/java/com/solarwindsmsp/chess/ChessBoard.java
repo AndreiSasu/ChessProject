@@ -18,7 +18,7 @@ public class ChessBoard {
         pieces = new Piece[MAX_BOARD_WIDTH][MAX_BOARD_HEIGHT];
     }
 
-    public void add(Piece piece, int xCoordinate, int yCoordinate) {
+    public void add(final Piece piece, final int xCoordinate, final int yCoordinate) {
         if(isSlotAvailable(xCoordinate, yCoordinate) && piece.getPlacementStrategy().isValidPlacement(this, xCoordinate, yCoordinate))  {
             pieces[xCoordinate][yCoordinate] = piece;
             piece.setChessBoard(this);
@@ -39,7 +39,7 @@ public class ChessBoard {
         return this.isLegalBoardPosition(xCoordinate, yCoordinate) && null == pieces[xCoordinate][yCoordinate];
     }
 
-    public boolean isLegalBoardPosition(int xCoordinate, int yCoordinate) {
+    public boolean isLegalBoardPosition(final int xCoordinate, final int yCoordinate) {
         return (xCoordinate >= 0 && xCoordinate < MAX_BOARD_WIDTH) && (yCoordinate >= 0 && yCoordinate < MAX_BOARD_HEIGHT);
     }
 
