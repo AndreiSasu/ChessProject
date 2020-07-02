@@ -1,17 +1,27 @@
 package com.solarwindsmsp.chess;
 
-public class Pawn {
+import com.solarwindsmsp.chess.movement.MovementStrategy;
+import com.solarwindsmsp.chess.movement.PawnMovementStrategy;
+import com.solarwindsmsp.chess.placement.PawnPlacementStrategy;
+import com.solarwindsmsp.chess.placement.PlacementStrategy;
+
+public class Pawn implements Piece {
 
     private ChessBoard chessBoard;
     private int xCoordinate;
     private int yCoordinate;
-    private PieceColor pieceColor;
+    private final PieceColor pieceColor;
+
+    protected final MovementStrategy movementStrategy;
+    protected final PlacementStrategy placementStrategy;
 
     public Pawn(PieceColor pieceColor) {
         this.pieceColor = pieceColor;
+        this.movementStrategy = new PawnMovementStrategy(this);
+        this.placementStrategy = new PawnPlacementStrategy(this);
     }
 
-    public ChessBoard getChesssBoard() {
+    public ChessBoard getChessBoard() {
         return chessBoard;
     }
 
@@ -19,41 +29,46 @@ public class Pawn {
         this.chessBoard = chessBoard;
     }
 
-    public int getXCoordinate() {
-        return xCoordinate;
-    }
-
-    public void setXCoordinate(int value) {
-        this.xCoordinate = value;
-    }
-
-    public int getYCoordinate() {
-        return yCoordinate;
-    }
-
-    public void setYCoordinate(int value) {
-        this.yCoordinate = value;
-    }
-
     public PieceColor getPieceColor() {
         return this.pieceColor;
     }
 
-    private void setPieceColor(PieceColor value) {
-        pieceColor = value;
-    }
-
-    public void Move(MovementType movementType, int newX, int newY) {
-        throw new UnsupportedOperationException("Need to implement Pawn.Move()") ;
+    public void move(MovementType movementType, int newX, int newY) {
+        this.movementStrategy.move(movementType, newX, newY);
     }
 
     @Override
     public String toString() {
-        return CurrentPositionAsString();
+        return currentPositionAsString();
     }
 
-    protected String CurrentPositionAsString() {
+    protected String currentPositionAsString() {
         String eol = System.lineSeparator();
         return String.format("Current X: {1}{0}Current Y: {2}{0}Piece Color: {3}", eol, xCoordinate, yCoordinate, pieceColor);
+    }
+
+    @Override
+    public PlacementStrategy getPlacementStrategy() {
+        return this.placementStrategy;
+    }
+
+    @Override
+    public int getXCoordinate() {
+        return this.xCoordinate;
+    }
+
+    @Override
+    public void setXCoordinate(int value) {
+        this.xCoordinate = value;
+    }
+
+    @Override
+    public int getYCoordinate() {
+        return this.yCoordinate;
+    }
+
+    @Override
+    public void setYCoordinate(int value) {
+        this.yCoordinate = value;
     }
 }
